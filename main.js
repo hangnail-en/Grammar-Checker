@@ -7,16 +7,18 @@ let badWord = 'freaking';
 let count = 0;
 let lengthCheck = 10
 
+// Count the words
 const countWords = storyWords.forEach(word => {
   count++;
-  // console.log(count);
+  console.log(count);
 });
 
+// Filter out unnecessary words
 const filterWords = storyWords.filter(word => {
   return word != unnecessaryWord;
 });
-// console.log(filterWords);
 
+// Check spelling of specific word
 const spellCheck = filterWords.map(word => {
   if (word === misspelledWord) {
     return 'beautiful';
@@ -24,19 +26,21 @@ const spellCheck = filterWords.map(word => {
     return word;
   };
 });
-// console.log(spellCheck.join(' '));
 
+// Return index of blacklisted words which is used to manually modify the words later
 const badWords = spellCheck.findIndex(word => {
   if (word === badWord) {
     return word;  // Returns index 78
   };
 });
-// console.log(badWords);
+// Manually modify the word given the index
 spellCheck[78] = 'really'
 
+// Return index of word over or equal to 10 for manual modification later
 const shortenStory = spellCheck.findIndex(word => {
   return word >= lengthCheck;
 });
+// Manually modify the word given the index
 storyWords[48] = 'glorious'
 
 // Full unaltered story
